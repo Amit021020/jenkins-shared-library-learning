@@ -1,7 +1,14 @@
-def call(){
-   sh 'docker compose down'
+def call() {
+    sh """
+        set -e
 
-    sh 'docker compose pull'
+        echo "Stopping old containers..."
+        docker compose down -v
 
-    sh 'docker compose up --build -d'
+        echo "Building and starting services..."
+        docker compose up --build -d
+
+        echo "Checking running containers..."
+        docker ps
+    """
 }
