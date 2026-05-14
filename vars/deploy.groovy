@@ -2,6 +2,6 @@ def call() {
     sh '''
         docker compose down
         docker compose pull
-        docker compose up -d
+        docker compose up --build -d
     '''
 }
